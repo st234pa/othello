@@ -33,7 +33,7 @@ public class Game {
 		else _consecPasses++;
 	}
 	public void computerTurn() {
-		System.out.println("Computer's turn.");
+		System.out.println("Computer's turn...");
 		_board = bestMove(possibleMoves(_board));
 		System.out.println(_board);
 	}
@@ -65,8 +65,8 @@ public class Game {
 				else if (_board.get(i,j).equals("o")) computer++;
 			}
 		}
-		if (player > computer) System.out.println("You win!");
-		else if (player < computer) System.out.println("You lose. :(");
+		if (player > computer) System.out.println("You win! Your score is " + (player - computer) + ".");
+		else if (player < computer) System.out.println("You lose. :( Your score is " + (player - computer) + ".");
 		else System.out.println("Draw.");
 	}
 }
