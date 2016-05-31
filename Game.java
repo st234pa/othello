@@ -17,5 +17,20 @@ public class Game {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 		System.out.println("Player's turn.");
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Row: ");
+		int r = scan.nextInt();
+		System.out.print("Column: ");
+		int c = scan.nextInt();
+		if (validMove(_board, r, c)) {
+			_board = makeMove(_board, r, c);
+		}
+		else _consecPasses++;
+	}
+	public static boolean validMove(Board b, int r, int c) {
+
+	}
+	public static Board makeMove(Board b, int r, int c) {
+		
 	}
 }
