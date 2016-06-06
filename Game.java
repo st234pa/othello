@@ -16,8 +16,8 @@ public class Game {
 			System.out.println(_board);
 			playerTurn();
 			Board inverse = _board.inverse();
-			//if (_tiles < 64 && _consecPasses < 2) 
-			//	computerTurn(inverse);
+			if (_tiles < 64 && _consecPasses < 2) 
+				computerTurn(inverse);
 		}
 		showResults();
 	}
@@ -38,7 +38,6 @@ public class Game {
 				_consecPasses = 0;
 				needmove = false;
 			}
-			//else _consecPasses++;
 		}
 		System.out.println(_board);
 	}
