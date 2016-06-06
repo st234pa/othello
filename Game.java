@@ -48,23 +48,45 @@ public class Game {
 		System.out.println(_board);
 	}
 	public boolean validMove(Board b, int r, int c) {
-		
-		return true;
+		if (b.get(r,c).equals("-")) {
+			for (int i = -1; i <=1; i++) {
+				for (int j = -1; j <= 1; j++) {
+					if (r+i >= 0 && r+i<8 && c+j>= 0 && c+j <8) {
+						if (goodFlip(b,r,c,i,j)) return true;;
+					}
+				}
+			}
+		}
+		return false;
 	}
 	public boolean goodFlip(Board b, int r, int c, int ud, int lr) {
-		
+		r+=ud;
+		c+=lr;
+		while(r+ud >= 0 && r+i<8 && c+lr>= 0 && c+lr <8 && !(b.get(r,c).equals("-"))) {
+			if (b.get(r,c).equals("x")) return true;
+			r+=ud;
+			c+=lr;
+		}
 		return false;
 	}
 	public Board flip(Board b, int r, int c,  int ud, int lr) {
-		
+		r+=ud;
+		c+=lr;
+		while(r+i >= 0 && r+i<8 && c+j>= 0 && c+j <8 && b.get(r,c).equals("o"))) {
+			b.set(r,c,"x");
+			r+=ud;
+			c+=lr;
+		}
 		return b;
 	}
 	public Board makeMove(Board b, int r, int c) {
 		b.set(r,c, "x");
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
-				if (!(b.get(r+i,c+j).equals("x"))) {
-					if (goodFlip(b, r, c, i, j)) b = flip(b, r, c, i, j);
+				if (r+i >= 0 && r+i<8 && c+j>= 0 && c+j <8) {
+					if (!(b.get(r+i,c+j).equals("x"))) {
+						if (goodFlip(b, r, c, i, j)) b = flip(b, r, c, i, j);
+					}
 				}
 			}
 		}
