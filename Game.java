@@ -72,7 +72,7 @@ public class Game {
 	public Board flip(Board b, int r, int c,  int ud, int lr) {
 		r+=ud;
 		c+=lr;
-		while(r+i >= 0 && r+i<8 && c+j>= 0 && c+j <8 && b.get(r,c).equals("o"))) {
+		while(r+i >= 0 && r+i<8 && c+j>= 0 && c+j <8 && b.get(r,c).equals("o")) {
 			b.set(r,c,"x");
 			r+=ud;
 			c+=lr;
