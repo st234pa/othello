@@ -58,9 +58,9 @@ public class Board implements Comparable<Board> {
 		return ans;
 	}
 	public int compareTo(Board other) {
-		if (this.getEval() > other.getEval()) return 1;
+		if (this.getEval() > other.getEval()) return -1;
 		else if (this.getEval() == other.getEval()) return 0;
-		else return -1;
+		else return 1;
 	}
 	public Board inverse() {
 		Board ans = new Board();
