@@ -62,7 +62,7 @@ public class Game {
 	public boolean goodFlip(Board b, int r, int c, int ud, int lr) {
 		r+=ud;
 		c+=lr;
-		while(r+ud >= 0 && r+i<8 && c+lr>= 0 && c+lr <8 && !(b.get(r,c).equals("-"))) {
+		while(r+ud >= 0 && r+ud<8 && c+lr>= 0 && c+lr <8 && !(b.get(r,c).equals("-"))) {
 			if (b.get(r,c).equals("x")) return true;
 			r+=ud;
 			c+=lr;
