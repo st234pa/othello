@@ -22,18 +22,22 @@ public class Game {
 		showResults();
 	}
 	public void playerTurn() {
+		boolean needmove = true;
+		_consecPasses++;
 		System.out.println("Player's turn.");
-		Scanner scan = new Scanner(System.in);
-		System.out.print("Row: ");
-		int r = scan.nextInt();
-		System.out.print("Column: ");
-		int c = scan.nextInt();
-		if (validMove(_board, r, c)) {
-			_board = makeMove(_board, r, c);
-			_tiles++;
-			_consecPasses = 0;
+		while (needmove && possibleMoves(_board).size() != 0) {
+			Scanner scan = new Scanner(System.in);
+			System.out.print("Row: ");
+			int r = scan.nextInt();
+			System.out.print("Column: ");
+			int c = scan.nextInt();
+			if (validMove(_board, r, c)) {
+				_board = makeMove(_board, r, c);
+				_tiles++;
+				_consecPasses = 0;
+				needmove = false;
+			}
 		}
-		else _consecPasses++;
 		System.out.println(_board);
 	}
 	public void computerTurn(Board inverse) {
