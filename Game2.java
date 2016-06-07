@@ -1,10 +1,10 @@
 import java.util.Scanner;
 import java.util.PriorityQueue;
 import java.util.ArrayList;
-public class Game {
+public class Game2 {
 	private Board _board;
 	private int _consecPasses, _n, _tiles;
-	public Game(Board b, int n) {
+	public Game2(Board b, int n) {
 		_board = b;
 		_consecPasses = 0;
 		_n = n;
@@ -39,7 +39,7 @@ public class Game {
 	}
 	public void computerTurn(Board b) {
 		System.out.println("Computer's turn...");
-		
+
 		System.out.println(_board);
 	}
 	public boolean validMove(Board b, int r, int c) {
@@ -67,7 +67,8 @@ public class Game {
 		return false;
 	}
 	public Board flip(Board b, int r, int c,  int ud, int lr) {
-		Board newboard = b;
+		Board newboard = new Board();
+		newboard.copy(b);
 		int i = r+ud;
 		int j = c+lr;
 		while(i>= 0 && i<8 && j>= 0 && j <8 && newboard.get(i,j).equals("o")) {
@@ -79,7 +80,8 @@ public class Game {
 		return newboard;
 	}
 	public Board makeMove(Board b, int r, int c) {
-		Board newboard = b;
+		Board newboard = new Board();
+		newboard.copy(b);
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				if (r+i >= 0 && r+i<8 && c+j>= 0 && c+j <8) {
