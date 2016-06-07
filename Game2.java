@@ -48,6 +48,7 @@ public class Game2 {
 				for (int j = -1; j <= 1; j++) {
 					if (r+i >= 0 && r+i<8 && c+j>= 0 && c+j <8) {
 						if (goodFlip(b,r,c,i,j)) {
+							System.out.println(b);
 							return true;
 						}
 					}

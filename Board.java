@@ -1,6 +1,6 @@
-public class Board /*implements Comparable<Board>*/ {
+public class Board  implements Comparable<Board> {
 	private String[][] _board;
-	//private int _eval;
+	private int _eval;
 	private static int[][] BOARDVALUE = {
 		{15, -7, 10, 7, 7, 10, -7, 15},
 		{-7, -10, -8, 2, 2, -8,-10, -7},
@@ -21,7 +21,7 @@ public class Board /*implements Comparable<Board>*/ {
 		_board[4][3] = "x";
 		_board[4][4] = "o";
 		_board[3][3] = "o";
-		//_eval = 0;
+		_eval = 0;
 	}
 	public String get(int i, int j) {
 		return _board[i][j];
@@ -41,14 +41,13 @@ public class Board /*implements Comparable<Board>*/ {
 		}
 		return ans;
 	}
-	/*
+	
 	public int getEval() {
 		return _eval;
 	}
 	public void setEval(int x) {
 		_eval = x;
 	}
-	*/
 	public int heuristic() {
 		int ans = 0;
 		for (int i = 0; i < 8; i++) {
@@ -59,13 +58,11 @@ public class Board /*implements Comparable<Board>*/ {
 		}
 		return ans;
 	}
-	/*
 	public int compareTo(Board other) {
 		if (this.getEval() > other.getEval()) return -1;
 		else if (this.getEval() == other.getEval()) return 0;
 		else return 1;
 	}
-	*/
 	public Board inverse() {
 		Board ans = new Board();
 		for (int i = 0; i < 8; i++) {
