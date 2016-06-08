@@ -39,8 +39,25 @@ public class Game2 {
 	}
 	public void computerTurn(Board b) {
 		System.out.println("Computer's turn...");
-
+		PriorityQueue<Board> pm = possibleMoves(b);
+		if (pm.size() != 0) {
+			_board = (bestMove(pm)).inverse();
+			_tiles++;
+			_consecPasses = 0;
+		}
+		else _consecPasses++;
 		System.out.println(_board);
+	}
+	public PriorityQueue<Board> possibleMoves(Board b) {
+		
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				if (validMove(b, i, j)) 
+			}
+		}
+	}
+	public Board bestMove(PriorityQueue<Board> pm) {
+		return pm.peek();
 	}
 	public boolean validMove(Board b, int r, int c) {
 		if (b.get(r,c).equals("-")) {

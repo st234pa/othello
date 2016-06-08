@@ -69,6 +69,7 @@ public class Board  implements Comparable<Board> {
 			for (int j = 0; j < 8; j++) {
 				if (this.get(i,j).equals("x")) ans.set(i,j,"o");
 				else if (this.get(i,j).equals("o")) ans.set(i,j,"x");
+				else ans.set(i,j,"-");
 			}
 		}
 		return ans;
