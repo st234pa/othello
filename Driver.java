@@ -7,7 +7,7 @@ public class Driver {
 		int n = scan.nextInt();
 		System.out.println("Player is x. Computer is o.");
 		Board board = new Board();
-		Game2 game2 = new Game2(board, n);
-		game2.run();
+		Game game = new Game(board, n);
+		game.run();
 	}
 }
