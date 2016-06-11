@@ -103,7 +103,7 @@ public class Game2 {
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				if (r+i >= 0 && r+i<8 && c+j>= 0 && c+j <8) {
-					if (!(newboard.get(r+i,c+j).equals("x"))) {
+					if (!(newboard.get(r+i,c+j).equals("o"))) {
 						if (goodFlip(newboard, r, c, i, j)) newboard = flip(newboard, r, c, i, j);
 					}
 				}

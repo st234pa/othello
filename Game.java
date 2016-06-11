@@ -43,7 +43,7 @@ public class Game {
 		//if (pm.size() != 0) {
 			//_board = (bestMove(pm)).inverse();
 		ArrayList<Board> listmoves = possibleMoves(b);
-		for (Board x: listmoves) System.out.println(x);
+		//for (Board x: listmoves) System.out.println(x);
 		//Scanner scan = new Scanner(System.in);
 		//System.out.println("asdf: ");
 		//int r= scan.nextInt();
@@ -90,16 +90,17 @@ public class Game {
 			i=r+ud;
 			j=c+lr;
 		}
-		newboard.set(r,c,"x");
+		
 		return newboard;
 	}
 	public Board makeMove(Board b, int r, int c) {
 		Board newboard = new Board();
 		newboard.copy(b);
+		newboard.set(r,c,"x");
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				if (r+i >= 0 && r+i<8 && c+j>= 0 && c+j <8) {
-					if (!(newboard.get(r+i,c+j).equals("x"))) {
+					if (newboard.get(r+i,c+j).equals("o")) {
 						if (goodFlip(newboard, r, c, i, j)) newboard = flip(newboard, r, c, i, j);
 					}
 				}
