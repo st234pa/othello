@@ -39,14 +39,27 @@ public class Game {
 	}
 	public void computerTurn(Board b) {
 		System.out.println("Computer's turn...");
-		ArrayList<Board> listmoves = possibleMoves(b);
-		if (listmoves.size() != 0) {
-			_board = (bestMove(listmoves, _n)).inverse();
-			_tiles++;
-			_consecPasses = 0;
+		if (_n == 1) {
+			PriorityQueue<Board> listmoves = possibleMoves2(b);
+			if (listmoves.size() != 0) {
+				_board = (bestMove(listmoves)).inverse();
+				_tiles++;
+				_consecPasses = 0;
+			}
+			else _consecPasses++;
+			System.out.println(_board);
 		}
-		else _consecPasses++;
-		System.out.println(_board);
+		else {
+			ArrayList<Board> listmoves = possibleMoves(b);
+			if (listmoves.size() != 0) {
+				_board = (bestMove(listmoves, _n)).inverse();
+				_tiles++;
+				_consecPasses = 0;
+			}
+			else _consecPasses++;
+			System.out.println(_board);
+		}
+		
 	}
 	public boolean validMove(Board b, int r, int c) {
 		if (b.get(r,c).equals("-")) {
@@ -116,6 +129,15 @@ public class Game {
 		}
 		return listmoves;
 	}
+	public PriorityQueue<Board> possibleMoves2(Board b) {
+		PriorityQueue<Board> listmoves = new PriorityQueue<Board>();
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				if (validMove(b, i, j)) listmoves.add(makeMove(b,i,j));
+			}
+		}
+		return listmoves;
+	}
 	public Board bestMove(ArrayList<Board> a, int n) {
 		Board ans = a.get(0);
 		
@@ -124,6 +146,9 @@ public class Game {
 		}
 		
 		return ans;
+	}
+	public Board bestMove(PriorityQueue<Board> a) {
+		return a.peek();
 	}
 	public void showResults() {
 		System.out.println("Game over.");
