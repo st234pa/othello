@@ -39,14 +39,7 @@ public class Game {
 	}
 	public void computerTurn(Board b) {
 		System.out.println("Computer's turn...");
-		//PriorityQueue<Board> pm = possibleMoves(b);
-		//if (pm.size() != 0) {
-			//_board = (bestMove(pm)).inverse();
 		ArrayList<Board> listmoves = possibleMoves(b);
-		//for (Board x: listmoves) System.out.println(x);
-		//Scanner scan = new Scanner(System.in);
-		//System.out.println("asdf: ");
-		//int r= scan.nextInt();
 		if (listmoves.size() != 0) {
 			_board = (bestMove(listmoves, _n)).inverse();
 			_tiles++;
@@ -60,9 +53,8 @@ public class Game {
 			for (int i = -1; i <=1; i++) {
 				for (int j = -1; j <= 1; j++) {
 					if (r+i >= 0 && r+i<8 && c+j>= 0 && c+j <8) {
-						if (goodFlip(b,r,c,i,j)) {
-							//System.out.println(b);
-							return true;
+						if (b.get(r+i, c+j).equals("o")) {
+							if (goodFlip(b,r,c,i,j)) return true;
 						}
 					}
 				}
@@ -71,12 +63,12 @@ public class Game {
 		return false;
 	}
 	public boolean goodFlip(Board b, int r, int c, int ud, int lr) {
-		r+=ud;
-		c+=lr;
-		while(r+ud >= 0 && r+ud<8 && c+lr>= 0 && c+lr <8 && !(b.get(r,c).equals("-"))) {
-			if (b.get(r,c).equals("x")) return true;
-			r+=ud;
-			c+=lr;
+		int i = r + ud;
+		int j = c + lr;
+		while(i >= 0 && i<8 && j>= 0 && j<8 && !(b.get(i,j).equals("-"))) {
+			if (b.get(i,j).equals("x")) return true;
+			i+=ud;
+			j+=lr;
 		}
 		return false;
 	}
@@ -87,10 +79,9 @@ public class Game {
 		int j = c+lr;
 		while(i>= 0 && i<8 && j>= 0 && j <8 && newboard.get(i,j).equals("o")) {
 			newboard.set(i,j,"x");
-			i=r+ud;
-			j=c+lr;
+			i+=ud;
+			j+=lr;
 		}
-		
 		return newboard;
 	}
 	public Board makeMove(Board b, int r, int c) {
@@ -106,6 +97,7 @@ public class Game {
 				}
 			}
 		}
+		newboard.setEval(newboard.heuristic());
 		return newboard;
 	}
 	/*
@@ -135,7 +127,7 @@ public class Game {
 	}
 	*/
 	public int calculate(Board b, int n) {
-		if (n == 1) return b.heuristic();
+		if (n == 1) return b.getEval();
 		else {
 			ArrayList<Board> responses = possibleMoves(b.inverse());
 			return calculate(bestMove(responses, n-1), n-1) * (-1);
@@ -152,11 +144,11 @@ public class Game {
 	}
 	public Board bestMove(ArrayList<Board> a, int n) {
 		Board ans = a.get(0);
-		/*
+		
 		for (int i = 1; i < a.size(); i++) {
-			if (calculate(a.get(i),n) > calculate(ans, n)
+			if (calculate(a.get(i),n) > calculate(ans, n)) ans = a.get(i);
 		}
-		*/
+		
 		return ans;
 	}
 	/*
