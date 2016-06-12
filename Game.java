@@ -24,18 +24,35 @@ public class Game {
 	}
 	public void playerTurn() {
 		System.out.println("Player's turn.");
-		Scanner scan = new Scanner(System.in);
-		System.out.print("Row: ");
-		int r = scan.nextInt();
-		System.out.print("Column: ");
-		int c = scan.nextInt();
-		if (validMove(_board, r, c)) {
+		PriorityQueue<Board> listmoves = possibleMoves2(_board);
+		if (listmoves.size() == 0) {
+			System.out.println("No possible moves. Player passes.");
+			_consecPasses++;
+		}	
+		else {
+			int r = 3;
+			int c = 4;
+			while (r < 0 || r > 7 || c < 0 || c > 7 || !validMove(_board, r, c)) {
+				r = getRow();
+				c = getCol();
+			}
 			_board = makeMove(_board, r, c);
 			_tiles++;
 			_consecPasses = 0;
 		}
-		else _consecPasses++;
 		System.out.println(_board);
+	}
+	public int getRow() {
+		System.out.println("Row: ");
+		Scanner scan = new Scanner(System.in);
+		int a = scan.nextInt();
+		return a;
+	}
+	public int getCol() {
+		System.out.println("Column: ");
+		Scanner scan = new Scanner(System.in);
+		int a = scan.nextInt();
+		return a;
 	}
 	public void computerTurn(Board b) {
 		System.out.println("Computer's turn...");
