@@ -100,32 +100,6 @@ public class Game {
 		newboard.setEval(newboard.heuristic());
 		return newboard;
 	}
-	/*
-	public void calculate(Board b, int n) {
-		if (n == 1) b.setEval(b.heuristic());
-		else {
-			Board inverse = b.inverse();
-			PriorityQueue<Board> responses = possibleMoves(inverse);
-			calculate(bestMove(responses), n-1);
-		}
-	}
-	public PriorityQueue<Board> possibleMoves(Board b) {
-		PriorityQueue<Board> moves = new PriorityQueue<Board>();
-		for (int r = 0; r < 8; r++) {
-			for (int c = 0; c < 8; c++) {
-				if (validMove(b, r, c)) {
-					Board k = makeMove(b,r,c);
-					calculate(k, _n);
-					moves.add(k);
-				}
-			}
-		}
-		return moves;
-	}
-	public Board bestMove(PriorityQueue<Board> moves) {
-		return moves.peek();
-	}
-	*/
 	public int calculate(Board b, int n) {
 		if (n == 1) return b.getEval();
 		else {
@@ -151,17 +125,6 @@ public class Game {
 		
 		return ans;
 	}
-	/*
-	public int calculate(Board b, int n) {
-		if (n == 1) return b.heuristic();
-		else {
-			return b.heuristic();
-		}
-	}
-	public ArrayList<Board> possibleMoves(Board b) {
-		ArrayList<Board> listmoves = new ArrayList<Board>();
-
-	}*/
 	public void showResults() {
 		System.out.println("Game over.");
 		int player = 0;
