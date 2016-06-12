@@ -58,7 +58,7 @@ public class Game {
 		System.out.println("Computer's turn...");
 		if (_n == 1) {
 			PriorityQueue<Board> listmoves = possibleMoves2(b);
-			if (listmoves.size() != 0) {
+			if (listmoves.size() > 0) {
 				_board = (bestMove(listmoves)).inverse();
 				_tiles++;
 				_consecPasses = 0;
@@ -68,7 +68,7 @@ public class Game {
 		}
 		else {
 			ArrayList<Board> listmoves = possibleMoves(b);
-			if (listmoves.size() != 0) {
+			if (listmoves.size() > 0) {
 				_board = (bestMove(listmoves, _n)).inverse();
 				_tiles++;
 				_consecPasses = 0;
@@ -134,6 +134,7 @@ public class Game {
 		if (n == 1) return b.getEval();
 		else {
 			ArrayList<Board> responses = possibleMoves(b.inverse());
+			if (responses.size() == 0) return b.getEval();
 			return calculate(bestMove(responses, n-1), n-1) * (-1);
 		}
 	}
