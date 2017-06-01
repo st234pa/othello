@@ -8,4 +8,4 @@ A single-player, text-based Othello game made in Java.
 
 ### Instructions
 * Clone and compile all java files.
-* 
+* Run Driver class.
